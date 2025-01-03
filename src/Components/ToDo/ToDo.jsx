@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TodoListForm from "../Signup/Signup";
-import { ToastContainer, toast,Bounce } from 'react-toastify';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ToDoList = () => {
@@ -14,7 +14,7 @@ const ToDoList = () => {
   const [UpdateDilog, setUpdateDilog] = useState(false);
   const [TaskName, SetTaskname] = useState("");
   const [Task, SetTask] = useState("");
-  const [Taskid , setTaskid] = useState("")
+  const [Taskid , setTaskid] = useState("");
 
   const navigate = useNavigate();
 
@@ -60,8 +60,6 @@ const ToDoList = () => {
     SetTaskname(FindToDo.TaskName); // Set TaskName state when updating
     setTaskid(FindToDo._id)
     setUpdateDilog(true);
-
-    
   };
 
   const DeleteTask = async (id) => {
@@ -99,7 +97,7 @@ const ToDoList = () => {
       const FindToDo = ToDo.find((ToDo) => ToDo._id == Taskid);
       console.log(FindToDo);
       FindToDo.TaskName = TaskName;
-      FindToDo.Task = Task
+      FindToDo.Task = Task;
 
       toast.success('Task updated successfully!', {
         position: "top-right",
@@ -113,7 +111,7 @@ const ToDoList = () => {
       });
     }
     else{
-      toast.error('some issue is occured', {
+      toast.error('Some issue occurred', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -123,7 +121,7 @@ const ToDoList = () => {
         progress: undefined,
         theme: "colored",
         transition: Bounce,
-        });
+      });
     }
   };
 
@@ -145,10 +143,11 @@ const ToDoList = () => {
             maxWidth: "500px",
             padding: "20px",
             height: "auto",
+            backgroundColor: '#e0f7fa',
           }}
         >
           <form>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
+            <h2 className="text-2xl font-semibold text-blue-700 mb-4 text-center">
               Update Task
             </h2>
 
@@ -156,7 +155,7 @@ const ToDoList = () => {
             <div className="mb-4">
               <label
                 htmlFor="taskName"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-blue-700"
               >
                 Task Name
               </label>
@@ -165,7 +164,7 @@ const ToDoList = () => {
                 id="taskName"
                 name="taskName"
                 ref={UpdatedTaskName}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-4 py-2 border border-blue-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 value={TaskName} // Directly bind TaskName state here
                 onChange={(e) => SetTaskname(e.target.value)} // Ensure TaskName updates on change
                 required
@@ -176,7 +175,7 @@ const ToDoList = () => {
             <div className="mb-4">
               <label
                 htmlFor="taskDescription"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-blue-700"
               >
                 Task Description
               </label>
@@ -184,7 +183,7 @@ const ToDoList = () => {
                 id="taskDescription"
                 name="taskDescription"
                 ref={UpdatedTask}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-4 py-2 border border-blue-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 value={Task} // Directly bind Task state here
                 onChange={(e) => SetTask(e.target.value)} // Ensure Task updates on change
                 required
@@ -207,7 +206,7 @@ const ToDoList = () => {
               </button>
               <button
                 type="button"
-                className="px-4 py-2 bg-indigo-600 text-white rounded-md shadow hover:bg-indigo-700 focus:outline-none"
+                className="px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 focus:outline-none"
                 onClick={UpdateTask} // Trigger update on click
               >
                 Update Task
@@ -225,6 +224,7 @@ const ToDoList = () => {
             maxWidth: "500px",
             padding: "20px",
             height: "auto",
+            backgroundColor: '#e0f7fa',
           }}
         >
           <TodoListForm closeDialog={() => setdilog(false)} />
@@ -233,8 +233,8 @@ const ToDoList = () => {
 
       <Dialog open={dilogstate} onClose={() => setdilogstate(false)}>
         <DialogContent>
-          <div className="p-6 bg-white rounded-lg shadow-md text-center">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">
+          <div className="p-6 bg-blue-50 rounded-lg shadow-md text-center">
+            <h2 className="text-lg font-semibold text-blue-700 mb-4">
               Are you sure you want to delete{" "}
               <span className="font-bold text-red-600">
                 {DilogTodo?.TaskName}
@@ -260,19 +260,19 @@ const ToDoList = () => {
       </Dialog>
 
       {/* Main ToDo list */}
-      <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 p-4">
         <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl font-bold text-gray-800">To-Do List</h1>
+            <h1 className="text-2xl font-bold text-blue-700">To-Do List</h1>
             <button
               onClick={() => CreateToDo()}
-              className="px-4 py-2 bg-indigo-600 text-white rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-1"
+              className="px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1"
             >
               Add New Task
             </button>
           </div>
-          <table className="table-auto w-full border-collapse border border-gray-300">
-            <thead className="bg-indigo-600 text-white">
+          <table className="table-auto w-full border-collapse border border-blue-300">
+            <thead className="bg-blue-600 text-white">
               <tr>
                 <th className="px-4 py-2 text-left">Task Title</th>
                 <th className="px-4 py-2 text-left">Task</th>
@@ -284,13 +284,13 @@ const ToDoList = () => {
                 <tr
                   key={index}
                   className={`${
-                    index % 2 === 0 ? "bg-gray-100" : "bg-white"
-                  } hover:bg-indigo-100`}
+                    index % 2 === 0 ? "bg-blue-50" : "bg-white"
+                  } hover:bg-blue-100`}
                 >
-                  <td className="border px-4 py-2 text-gray-700">
+                  <td className="border px-4 py-2 text-blue-700">
                     {item.TaskName}
                   </td>
-                  <td className="border px-4 py-2 text-gray-700">
+                  <td className="border px-4 py-2 text-blue-700">
                     {item.Task}
                   </td>
                   <td className="border px-4 py-2 flex justify-center space-x-2">
@@ -313,18 +313,18 @@ const ToDoList = () => {
           </table>
         </div>
         <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick={false}
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="colored"
-transition={Bounce}
-/>
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          transition={Bounce}
+        />
       </div>
     </>
   );
