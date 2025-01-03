@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TodoListForm from "../Signup/Signup";
+import { ToastContainer, toast,Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ToDoList = () => {
   const [ToDo, SetToDo] = useState([]);
@@ -44,7 +46,9 @@ const ToDoList = () => {
     SetTask(FindToDo.Task); // Set Task state when updating
     SetTaskname(FindToDo.TaskName); // Set TaskName state when updating
     setTaskid(FindToDo._id)
-    setUpdateDilog(true); 
+    setUpdateDilog(true);
+
+    
   };
 
   const DeleteTask = async (id) => {
@@ -55,6 +59,16 @@ const ToDoList = () => {
       setdilogstate(false);
       const updated = ToDo.filter((task) => task._id !== id);
       SetToDo(updated);
+      toast.success('Task deleted successfully!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        transition: Bounce,
+      });
     }
   };
 
@@ -73,6 +87,30 @@ const ToDoList = () => {
       console.log(FindToDo);
       FindToDo.TaskName = TaskName;
       FindToDo.Task = Task
+
+      toast.success('Task updated successfully!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        transition: Bounce,
+      });
+    }
+    else{
+      toast.error('some issue is occured', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+        });
     }
   };
 
@@ -261,6 +299,19 @@ const ToDoList = () => {
             </tbody>
           </table>
         </div>
+        <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+transition={Bounce}
+/>
       </div>
     </>
   );
