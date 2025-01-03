@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const TodoListForm = () => {
+const TodoListForm = ({ closeDialog }) => {
   const [listName, setListName] = useState(""); // For managing the ToDo input
   const [taskContent, setTaskContent] = useState(""); // For managing the Task input
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const TodoListForm = () => {
   };
 
   const SendData = async (e) => {
-    e.preventDefault(); // Prevent form submission from reloading the page
+    e.preventDefault();
     if (listName !== "" && taskContent !== "") {
       try {
         const response = await axios.post("http://localhost:3000/AddToDo", {
@@ -32,7 +32,7 @@ const TodoListForm = () => {
           await Getdata();
           setListName("");
           setTaskContent("");
-          navigate('/TodoList')
+          closeDialog();
         }
       } catch (error) {
         console.error("Error saving data:", error);

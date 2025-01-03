@@ -227,7 +227,7 @@ const ToDoList = () => {
             height: "auto",
           }}
         >
-          <TodoListForm />
+          <TodoListForm closeDialog={() => setdilog(false)} />
         </DialogContent>
       </Dialog>
 
