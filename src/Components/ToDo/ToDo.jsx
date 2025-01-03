@@ -30,6 +30,19 @@ const ToDoList = () => {
     getdata();
   }, []);
 
+  useEffect(() => {
+    if (!createdilog) {
+      const getdata = async () => {
+        const Data = sessionStorage.getItem("data");
+        if (Data) {
+          const parsed = JSON.parse(Data);
+          SetToDo(parsed);
+        }
+      };
+      getdata();
+    }
+  }, [createdilog]);
+
   const SetTodo = (id) => {
     const FindToDo = ToDo.find((ToDo) => ToDo._id === id);
     console.log(FindToDo);
