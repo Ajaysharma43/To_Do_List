@@ -23,7 +23,7 @@ const TodoListForm = () => {
         console.log(result);
         if (result === "success") {
           console.log("data saved");
-          navigate("/TodoList");
+          navigate("/TodoList",{replace:true});
         }
       } else {
         console.log("data is incomplete");

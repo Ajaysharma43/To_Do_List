@@ -12,6 +12,7 @@ const ToDoList = () => {
   const [UpdateDilog, setUpdateDilog] = useState(false);
   const [TaskName, SetTaskname] = useState("");
   const [Task, SetTask] = useState("");
+  const [Taskid , setTaskid] = useState("")
 
   const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ const ToDoList = () => {
     setDilogTodo(FindToDo);
     SetTask(FindToDo.Task); // Set Task state when updating
     SetTaskname(FindToDo.TaskName); // Set TaskName state when updating
+    setTaskid(FindToDo._id)
     setUpdateDilog(true); 
   };
 
@@ -56,7 +58,7 @@ const ToDoList = () => {
     }
   };
 
-  const UpdateTask = async () => {
+  const UpdateTask = async (id) => {
     const UpdateTask = UpdatedTask.current.value;
     const UpdateTaskname = UpdatedTaskName.current.value;
     const response = await axios.post("http://localhost:3000/UpdateToDo", {
@@ -67,10 +69,10 @@ const ToDoList = () => {
 
     if (response.data === "updated") {
       setUpdateDilog(false); // Close the dialog
-      setDilogTodo({}); // Clear the state after successful update
-      SetTask(""); // Clear the Task state
-      SetTaskname(""); // Clear the TaskName state
-      navigate(0); // Reload the page to reflect the changes
+      const FindToDo = ToDo.find((ToDo) => ToDo._id == Taskid);
+      console.log(FindToDo);
+      FindToDo.TaskName = TaskName;
+      FindToDo.Task = Task
     }
   };
 
